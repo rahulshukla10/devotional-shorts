@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to sure everything still looks the same as it did with v3.
+  If we ever want to remove these styles, we need to add an explicit border color utility class, instead of relying on defaults.
+*/
+@layer base {
+
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+:root {
+  /* Devotional Theme Palette */
+  /* Saffron (Primary) */
+  --primary: #f4a928;
+  --primary-foreground: #1a1a1a;
+
+  /* Deep Orange (Accent) */
+  --accent: #ed5f21;
+  --accent-foreground: #ffffff;
+
+  /* Gold/Yellow (Secondary) */
+  --secondary: #fbd38d;
+  --secondary-foreground: #1a1a1a;
+
+  /* Cream/Off-white (Background) */
+  --background: #fffaf0;
+  --foreground: #2d2d2d;
+
+  /* Card/Muted Backgrounds */
+  --card: #ffffff;
+  --card-foreground: #2d2d2d;
+
+  --popover: #ffffff;
+  --popover-foreground: #2d2d2d;
+
+  --muted: #f7f2e8;
+  --muted-foreground: #7d7d7d;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #fef2f2;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #f4a928;
+
+  --radius: 0.75rem;
+}
+
+.dark {
+  /* Dark Mode (Deep Brown/Black with Gold accents) */
+  --background: #1a1510;
+  --foreground: #ececec;
+
+  --card: #241e19;
+  --card-foreground: #ececec;
+
+  --popover: #241e19;
+  --popover-foreground: #ececec;
+
+  --primary: #f4a928;
+  --primary-foreground: #1a1a1a;
+
+  --secondary: #d69e2e;
+  --secondary-foreground: #1a1a1a;
+
+  --muted: #2d241b;
+  --muted-foreground: #a0aec0;
+
+  --accent: #ed5f21;
+  --accent-foreground: #ffffff;
+
+  --destructive: #7f1d1d;
+  --destructive-foreground: #fef2f2;
+
+  --border: #4a3b2a;
+  --input: #4a3b2a;
+  --ring: #f4a928;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
